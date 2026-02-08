@@ -5,7 +5,7 @@ import { metrics, revenueHistory, recentActivity, topCustomers, formatMoney, for
 
 export default function Dashboard() {
   return (
-    <div className="px-8 py-6 max-w-6xl animate-slide-up">
+    <div className="px-8 py-6 max-w-7xl 2xl:max-w-[1600px] mx-auto animate-slide-up">
       {/* Header - minimal, not generic */}
       <header className="flex items-center justify-between mb-10">
         <div>
@@ -93,7 +93,7 @@ export default function Dashboard() {
             </span>
           </div>
         </div>
-        <div className="h-56 -ml-4">
+        <div className="h-56 2xl:h-72 -ml-4">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={revenueHistory} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
               <defs>
