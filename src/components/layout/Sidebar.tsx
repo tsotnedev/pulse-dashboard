@@ -8,7 +8,6 @@ const nav = [
   { name: "Revenue", href: "/revenue", shortcut: "G R", icon: "chart" },
   { name: "Customers", href: "/customers", shortcut: "G C", icon: "users" },
   { name: "Analytics", href: "/analytics", shortcut: "G A", icon: "analytics" },
-  { name: "Events", href: "/events", shortcut: "G E", icon: "activity" },
 ];
 
 const icons: Record<string, React.ReactNode> = {
