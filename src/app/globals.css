@@ -1,140 +1,118 @@
 @import "tailwindcss";
 
 @theme {
-  /* Obsidian Color Palette */
-  --color-obsidian-deep: #0f0f1a;
-  --color-obsidian-base: #1a1a2e;
-  --color-obsidian-darker: #16162a;
-  --color-obsidian-surface: #252542;
-  --color-obsidian-elevated: #2d2d4a;
-  --color-obsidian-hover: #353558;
+  /* Clean Dark Palette - Subtle, not flashy */
+  --color-bg-primary: #0a0a0f;
+  --color-bg-secondary: #111118;
+  --color-bg-tertiary: #18181b;
+  --color-bg-elevated: #1f1f24;
+  --color-bg-hover: #27272a;
   
-  /* Accent Colors */
-  --color-accent-purple: #8b5cf6;
-  --color-accent-purple-light: #a78bfa;
-  --color-accent-purple-dark: #7c3aed;
-  --color-accent-cyan: #06b6d4;
-  --color-accent-cyan-light: #22d3ee;
+  /* Card/Surface colors */
+  --color-surface: #18181b;
+  --color-surface-hover: #1f1f24;
   
-  /* Text Colors */
-  --color-text-primary: #f5f5f7;
-  --color-text-secondary: #a1a1b5;
-  --color-text-muted: #6b6b80;
+  /* Border colors - subtle */
+  --color-border: #27272a;
+  --color-border-hover: #3f3f46;
   
-  /* Border Colors */
-  --color-border-subtle: rgba(139, 92, 246, 0.1);
-  --color-border-default: rgba(139, 92, 246, 0.2);
-  --color-border-strong: rgba(139, 92, 246, 0.3);
+  /* Text hierarchy - high contrast */
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #a1a1aa;
+  --color-text-muted: #71717a;
   
-  /* Glow Effects */
-  --color-glow-purple: rgba(139, 92, 246, 0.4);
-  --color-glow-cyan: rgba(6, 182, 212, 0.3);
+  /* Accent - soft purple (primary) */
+  --color-accent: #a78bfa;
+  --color-accent-hover: #8b5cf6;
+  --color-accent-muted: rgba(167, 139, 250, 0.15);
+  
+  /* Status colors - clear and functional */
+  --color-success: #22c55e;
+  --color-success-muted: rgba(34, 197, 94, 0.15);
+  --color-danger: #ef4444;
+  --color-danger-muted: rgba(239, 68, 68, 0.15);
+  --color-warning: #f59e0b;
+  --color-warning-muted: rgba(245, 158, 11, 0.15);
+  
+  /* Chart colors */
+  --color-chart-primary: #a78bfa;
+  --color-chart-secondary: #22d3ee;
+  --color-chart-tertiary: #22c55e;
   
   /* Fonts */
-  --font-heading: "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
-  
-  /* Shadows */
-  --shadow-glow-sm: 0 0 10px var(--color-glow-purple);
-  --shadow-glow-md: 0 0 20px var(--color-glow-purple);
-  --shadow-glow-lg: 0 0 40px var(--color-glow-purple);
-  --shadow-glow-cyan: 0 0 15px var(--color-glow-cyan);
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "SF Mono", "Fira Code", monospace;
 }
 
-/* Base styles */
+/* Base reset */
+* {
+  box-sizing: border-box;
+}
+
 html {
-  background: var(--color-obsidian-deep);
+  background: var(--color-bg-primary);
   color: var(--color-text-primary);
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: linear-gradient(135deg, var(--color-obsidian-deep) 0%, var(--color-obsidian-base) 50%, var(--color-obsidian-darker) 100%);
+  background: var(--color-bg-primary);
   min-height: 100vh;
+  margin: 0;
 }
 
-/* Glassmorphism utility */
-.glass {
-  background: linear-gradient(
-    135deg,
-    rgba(45, 45, 74, 0.6) 0%,
-    rgba(37, 37, 66, 0.4) 100%
-  );
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--color-border-subtle);
+/* Focus states - accessible */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
-.glass-strong {
-  background: linear-gradient(
-    135deg,
-    rgba(45, 45, 74, 0.8) 0%,
-    rgba(37, 37, 66, 0.6) 100%
-  );
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  border: 1px solid var(--color-border-default);
+/* Scrollbar - minimal */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-/* Glow effects */
-.glow-purple {
-  box-shadow: var(--shadow-glow-sm);
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.glow-purple-hover:hover {
-  box-shadow: var(--shadow-glow-md);
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
 }
 
-.glow-cyan {
-  box-shadow: var(--shadow-glow-cyan);
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-hover);
 }
 
-/* Gradient text */
+/* Selection */
+::selection {
+  background: var(--color-accent);
+  color: white;
+}
+
+/* Utility classes */
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-accent-purple) 0%, var(--color-accent-cyan) 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-chart-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Focus ring */
-.focus-glow:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--color-obsidian-base), 0 0 0 4px var(--color-accent-purple), var(--shadow-glow-sm);
+/* Animations - subtle */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--color-obsidian-darker);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-obsidian-elevated);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent-purple);
-}
-
-/* Selection styling */
-::selection {
-  background: var(--color-accent-purple);
-  color: var(--color-text-primary);
-}
-
-/* Subtle noise texture overlay */
-.noise::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.03;
-  pointer-events: none;
-  mix-blend-mode: overlay;
+/* Chart tooltip styling */
+.recharts-tooltip-wrapper {
+  outline: none !important;
 }

@@ -1,24 +1,17 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Sidebar } from "@/components/layout/Sidebar";
-import { Header } from "@/components/layout/Header";
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-heading",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-});
 
 const inter = Inter({
-  variable: "--font-body",
+  variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Pulse | SaaS Analytics Dashboard",
-  description: "Elegant analytics for modern SaaS businesses",
+  title: "Pulse — SaaS Analytics",
+  description: "Track your SaaS metrics in real-time",
 };
 
 export default function RootLayout({
@@ -27,16 +20,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${plusJakartaSans.variable} ${inter.variable}`}>
-      <body className="antialiased">
+    <html lang="en" className={inter.variable}>
+      <body>
         <div className="flex min-h-screen">
           <Sidebar />
-          <div className="flex-1 flex flex-col ml-64">
-            <Header />
-            <main className="flex-1 p-8 pt-24">
-              {children}
-            </main>
-          </div>
+          <main className="flex-1 ml-60 p-8 bg-[var(--color-bg-primary)]">
+            {children}
+          </main>
         </div>
       </body>
     </html>

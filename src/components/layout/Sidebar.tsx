@@ -3,13 +3,22 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const navItems = [
+const navigation = [
   {
-    name: "Dashboard",
+    name: "Overview",
     href: "/",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+      </svg>
+    ),
+  },
+  {
+    name: "Revenue",
+    href: "/revenue",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
   },
@@ -47,66 +56,52 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 glass-strong flex flex-col z-50">
+    <aside className="fixed left-0 top-0 h-screen w-60 bg-[var(--color-bg-secondary)] border-r border-[var(--color-border)] flex flex-col">
       {/* Logo */}
-      <div className="p-6 border-b border-[var(--color-border-subtle)]">
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--color-accent-purple)] to-[var(--color-accent-cyan)] flex items-center justify-center shadow-lg group-hover:shadow-[var(--shadow-glow-md)] transition-shadow duration-300">
-              <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-              </svg>
-            </div>
-            <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[var(--color-accent-purple)] to-[var(--color-accent-cyan)] blur-lg opacity-40 -z-10"></div>
+      <div className="h-16 flex items-center px-6 border-b border-[var(--color-border)]">
+        <Link href="/" className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-[var(--color-accent)] flex items-center justify-center">
+            <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+            </svg>
           </div>
-          <span className="font-[family-name:var(--font-heading)] font-bold text-xl text-gradient">
-            Pulse
-          </span>
+          <span className="font-semibold text-lg text-[var(--color-text-primary)]">Pulse</span>
         </Link>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4 space-y-1">
-        {navItems.map((item) => {
-          const isActive = pathname === item.href;
-          return (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group relative ${
-                isActive
-                  ? "bg-[var(--color-accent-purple)]/20 text-[var(--color-accent-purple-light)]"
-                  : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-obsidian-hover)]"
-              }`}
-            >
-              {isActive && (
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-gradient-to-b from-[var(--color-accent-purple)] to-[var(--color-accent-cyan)] rounded-r-full"></div>
-              )}
-              <span className={`transition-transform duration-200 ${isActive ? "text-[var(--color-accent-purple)]" : "group-hover:scale-110"}`}>
+      <nav className="flex-1 py-4 px-3">
+        <div className="space-y-1">
+          {navigation.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  isActive
+                    ? "bg-[var(--color-accent-muted)] text-[var(--color-accent)]"
+                    : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-hover)]"
+                }`}
+              >
                 {item.icon}
-              </span>
-              <span className="font-medium text-sm">{item.name}</span>
-              {isActive && (
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[var(--color-accent-purple)]/10 to-transparent pointer-events-none"></div>
-              )}
-            </Link>
-          );
-        })}
+                {item.name}
+              </Link>
+            );
+          })}
+        </div>
       </nav>
 
-      {/* User section */}
-      <div className="p-4 border-t border-[var(--color-border-subtle)]">
-        <div className="flex items-center gap-3 p-3 rounded-xl hover:bg-[var(--color-obsidian-hover)] transition-colors cursor-pointer">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--color-accent-purple)] to-[var(--color-accent-cyan)] flex items-center justify-center text-white font-semibold text-sm">
-            JD
+      {/* User */}
+      <div className="p-3 border-t border-[var(--color-border)]">
+        <div className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[var(--color-bg-hover)] transition-colors cursor-pointer">
+          <div className="w-8 h-8 rounded-full bg-[var(--color-bg-tertiary)] flex items-center justify-center text-[var(--color-text-secondary)] text-sm font-medium">
+            A
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-[var(--color-text-primary)] truncate">John Doe</p>
-            <p className="text-xs text-[var(--color-text-muted)] truncate">john@pulse.io</p>
+            <p className="text-sm font-medium text-[var(--color-text-primary)] truncate">Acme Inc</p>
+            <p className="text-xs text-[var(--color-text-muted)] truncate">Free trial</p>
           </div>
-          <svg className="w-4 h-4 text-[var(--color-text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
-          </svg>
         </div>
       </div>
     </aside>
