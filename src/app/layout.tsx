@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Sidebar } from "@/components/layout/Sidebar";
+import { CommandPalette } from "@/components/CommandPalette";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({
         <main className="ml-16 min-h-screen">
           {children}
         </main>
+        <CommandPalette />
       </body>
     </html>
   );
