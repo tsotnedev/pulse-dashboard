@@ -7,6 +7,7 @@ const nav = [
   { name: "Overview", href: "/", shortcut: "G O", icon: "grid" },
   { name: "Revenue", href: "/revenue", shortcut: "G R", icon: "chart" },
   { name: "Customers", href: "/customers", shortcut: "G C", icon: "users" },
+  { name: "Analytics", href: "/analytics", shortcut: "G A", icon: "analytics" },
   { name: "Events", href: "/events", shortcut: "G E", icon: "activity" },
 ];
 
