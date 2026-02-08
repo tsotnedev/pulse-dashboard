@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Sidebar } from "@/components/layout/Sidebar";
 
 const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+});
+
+const jetbrains = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Pulse — SaaS Analytics",
-  description: "Track your SaaS metrics in real-time",
+  title: "Pulse",
+  description: "SaaS metrics that matter",
 };
 
 export default function RootLayout({
@@ -20,14 +24,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${jetbrains.variable}`}>
       <body>
-        <div className="flex min-h-screen">
-          <Sidebar />
-          <main className="flex-1 ml-60 p-8 bg-[var(--color-bg-primary)]">
-            {children}
-          </main>
-        </div>
+        <Sidebar />
+        <main className="ml-16 min-h-screen">
+          {children}
+        </main>
       </body>
     </html>
   );

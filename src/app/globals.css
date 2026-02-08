@@ -1,118 +1,100 @@
 @import "tailwindcss";
 
 @theme {
-  /* Clean Dark Palette - Subtle, not flashy */
-  --color-bg-primary: #0a0a0f;
-  --color-bg-secondary: #111118;
-  --color-bg-tertiary: #18181b;
-  --color-bg-elevated: #1f1f24;
-  --color-bg-hover: #27272a;
+  /* Distinctive palette - warm neutrals with teal accent */
+  --color-bg: #0c0c0c;
+  --color-bg-raised: #141414;
+  --color-bg-elevated: #1a1a1a;
+  --color-bg-hover: #222;
   
-  /* Card/Surface colors */
-  --color-surface: #18181b;
-  --color-surface-hover: #1f1f24;
+  /* Border - barely visible */
+  --color-border: #222;
+  --color-border-subtle: #1a1a1a;
   
-  /* Border colors - subtle */
-  --color-border: #27272a;
-  --color-border-hover: #3f3f46;
+  /* Text - warm whites */
+  --color-text: #ececec;
+  --color-text-secondary: #888;
+  --color-text-tertiary: #555;
   
-  /* Text hierarchy - high contrast */
-  --color-text-primary: #fafafa;
-  --color-text-secondary: #a1a1aa;
-  --color-text-muted: #71717a;
+  /* Accent - teal, used sparingly */
+  --color-accent: #2dd4bf;
+  --color-accent-dim: rgba(45, 212, 191, 0.12);
   
-  /* Accent - soft purple (primary) */
-  --color-accent: #a78bfa;
-  --color-accent-hover: #8b5cf6;
-  --color-accent-muted: rgba(167, 139, 250, 0.15);
+  /* Semantic */
+  --color-positive: #34d399;
+  --color-negative: #f87171;
+  --color-warning: #fbbf24;
   
-  /* Status colors - clear and functional */
-  --color-success: #22c55e;
-  --color-success-muted: rgba(34, 197, 94, 0.15);
-  --color-danger: #ef4444;
-  --color-danger-muted: rgba(239, 68, 68, 0.15);
-  --color-warning: #f59e0b;
-  --color-warning-muted: rgba(245, 158, 11, 0.15);
-  
-  /* Chart colors */
-  --color-chart-primary: #a78bfa;
-  --color-chart-secondary: #22d3ee;
-  --color-chart-tertiary: #22c55e;
-  
-  /* Fonts */
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "SF Mono", "Fira Code", monospace;
-}
-
-/* Base reset */
-* {
-  box-sizing: border-box;
+  /* Type scale */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
 }
 
 html {
-  background: var(--color-bg-primary);
-  color: var(--color-text-primary);
+  background: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-sans);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--color-bg-primary);
-  min-height: 100vh;
+  background: var(--color-bg);
   margin: 0;
+  min-height: 100vh;
 }
 
-/* Focus states - accessible */
+/* Monospace numbers - critical for dashboards */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* Focus */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 1.5px solid var(--color-accent);
   outline-offset: 2px;
 }
 
-/* Scrollbar - minimal */
+/* Scrollbar - invisible until hover */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
 }
-
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: 3px;
+  background: #333;
+  border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-border-hover);
+  background: #444;
 }
 
 /* Selection */
 ::selection {
   background: var(--color-accent);
-  color: white;
+  color: black;
 }
 
-/* Utility classes */
-.text-gradient {
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-chart-secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Keyframes */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
-/* Animations - subtle */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-out;
+.animate-slide-up {
+  animation: slide-up 0.4s ease-out;
 }
 
-/* Chart tooltip styling */
-.recharts-tooltip-wrapper {
-  outline: none !important;
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
 }
